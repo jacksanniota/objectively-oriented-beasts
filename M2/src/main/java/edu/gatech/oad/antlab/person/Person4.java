@@ -1,11 +1,10 @@
 package edu.gatech.oad.antlab.person;
-
 /**
  *  A simple class for person 4
  *  returns their name and a
  *  modified string 
  *  
- *  @author Bob
+ *  @author Chris Sewell
  *  @version 1.1
  */
 public class Person4 {
@@ -29,9 +28,12 @@ public class Person4 {
      * @param input the string to be modified
      * @return the modified string
      */
-    private String calc(String input) {
-      //Person 4 put your implementation here
-      return null;
+    private static String calc(String input) {
+      char[] characters = input.toCharArray();
+      for (int x = 0; x < characters.length; x++) {
+        characters[x] = (char) (characters[x] + 1);
+      }
+      return new String(characters);
     }
     
     /**
