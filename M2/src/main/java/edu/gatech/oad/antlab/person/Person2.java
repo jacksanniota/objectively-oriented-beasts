@@ -29,7 +29,7 @@ public class Person2 {
 	 * @param input the string to be modified
 	 * @return the modified string
 	 */
-	private static String calc(String input) {
+	private String calc(String input) {
 		ArrayList<Character> letters = new ArrayList<>();
 		for (char c : input.toCharArray()) {
 			letters.add(c);
