@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.group6;
 
+import edu.gatech.cs2340.group6.object.Player;
 import edu.gatech.cs2340.group6.screen.ConfigScreen;
 
 import javax.swing.*;
@@ -9,7 +10,8 @@ import java.awt.event.ActionListener;
 
 public class Game extends JFrame {
 
-    public static Game instance = null;
+    private static Game instance = null;
+    private static Player player;
 
     public Game(String title) {
         this.setTitle(title);
@@ -18,6 +20,7 @@ public class Game extends JFrame {
         JPanel contentPane = createStartPanel();
         this.setContentPane(contentPane);
         this.setVisible(true);
+        player = new Player();
     }
 
     private JPanel createStartPanel() {
@@ -39,8 +42,13 @@ public class Game extends JFrame {
         return jPanel;
     }
 
+    public static Player getPlayer() {
+        return player;
+    }
 
-
+    public static Game getInstance() {
+        return instance;
+    }
 
     public static void main(String[] args) {
         Game game = new Game("SpaceTrader");
