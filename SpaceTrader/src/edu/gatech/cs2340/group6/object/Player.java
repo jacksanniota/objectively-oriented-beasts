@@ -1,11 +1,13 @@
 package edu.gatech.cs2340.group6.object;
 
+import edu.gatech.cs2340.group6.skills.Pilot;
 import edu.gatech.cs2340.group6.skills.Skill;
+import edu.gatech.cs2340.group6.skills.Skills;
 
 public class Player {
 
     private String name;
-    private Skill skill;
+    private Skills skills;
     private double tokens = 0;
     private Difficulty difficulty;
 
@@ -37,11 +39,11 @@ public class Player {
         tokens = amount;
     }
 
-    public Skill getSkill() {
-        return skill;
+    public Skills getSkills() {
+        return skills;
     }
 
-    public void setSkill(Skill skill) {
-        this.skill = skill;
+    public void setSkills(Skills skills) {
+        this.skills = skills;
     }
 }
