@@ -2,11 +2,9 @@ package edu.gatech.cs2340.group6.screen;
 
 import edu.gatech.cs2340.group6.Game;
 import edu.gatech.cs2340.group6.object.Difficulty;
-import edu.gatech.cs2340.group6.skills.Skill;
-import edu.gatech.cs2340.group6.skills.SkillUtils;
+import edu.gatech.cs2340.group6.skills.*;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,25 +38,29 @@ public class ConfigScreen {
 
         JPanel skillPanel = new JPanel();
         skillPanel.setLayout(new GridLayout());
-        JLabel skillsLabel = new JLabel("Select Skill");
-        JRadioButton fighter = new JRadioButton("Fighter");
-        fighter.setActionCommand("Fighter");
-        JRadioButton merchant = new JRadioButton("Merchant");
-        merchant.setActionCommand("Merchant");
-        JRadioButton pilot = new JRadioButton("Pilot");
-        pilot.setActionCommand("Pilot");
-        JRadioButton engineer = new JRadioButton("Engineer");
-        engineer.setActionCommand("Engineer");
+        JLabel skillsLabel = new JLabel("Select Skill Points");
+
+        JLabel fighterLabel = new JLabel("Fighter");
+        JTextField fighter = new JTextField();
+
+        JLabel merchantLabel = new JLabel("Merchant");
+        JTextField merchant = new JTextField();
+
+        JLabel pilotLabel = new JLabel("Pilot");
+        JTextField pilot = new JTextField();
+
+        JLabel engineerLabel = new JLabel("Engineer");
+        JTextField engineer = new JTextField();
+
         skillPanel.add(skillsLabel);
+        skillPanel.add(fighterLabel);
         skillPanel.add(fighter);
+        skillPanel.add(merchantLabel);
         skillPanel.add(merchant);
+        skillPanel.add(pilotLabel);
         skillPanel.add(pilot);
+        skillPanel.add(engineerLabel);
         skillPanel.add(engineer);
-        ButtonGroup skillsGroup = new ButtonGroup();
-        skillsGroup.add(fighter);
-        skillsGroup.add(merchant);
-        skillsGroup.add(pilot);
-        skillsGroup.add(engineer);
 
         JButton continueButton = new JButton("Continue");
         continueButton.addActionListener(new ActionListener() {
@@ -66,8 +68,22 @@ public class ConfigScreen {
             public void actionPerformed(ActionEvent e) {
                 String name = getPlayerName(nameInput);
                 Difficulty difficulty = getSelectedDifficulty(difficultyGroup);
-                Skill skill = getSelectedSkill(skillsGroup);
-                updatePlayer(name, difficulty, skill);
+
+                int fighterAmount = Integer.parseInt(fighter.getText());
+                int engineerAmount = Integer.parseInt(engineer.getText());
+                int pilotAmount = Integer.parseInt(pilot.getText());
+                int merchantAmount = Integer.parseInt(merchant.getText());
+                int total = fighterAmount + engineerAmount + merchantAmount + pilotAmount;
+                if (total > difficulty.getSkillPoints()) {
+                    return;
+                }
+                Skills skills = new Skills();
+                skills.setFighter(new Fighter(fighterAmount));
+                skills.setEngineer(new Engineer(engineerAmount));
+                skills.setPilot(new Pilot(pilotAmount));
+                skills.setMerchant(new Merchant(merchantAmount));
+
+                updatePlayer(name, difficulty, skills);
                 Game.getInstance().getContentPane().removeAll();
                 Game.getInstance().getContentPane().add(new ViewConfigScreen().getScreen());
                 Game.getInstance().getContentPane().validate();
@@ -85,16 +101,6 @@ public class ConfigScreen {
         return jPanel;
     }
 
-    private Skill getSelectedSkill(ButtonGroup skillsGroup) {
-        ButtonModel button = skillsGroup.getSelection();
-        Skill skill = SkillUtils.stringToSkill((button.getActionCommand()));
-        if (skill == null) {
-            throw new IllegalArgumentException("Skill does not exist.");
-        }
-
-        return skill;
-    }
-
     private Difficulty getSelectedDifficulty(ButtonGroup difficultyGroup) {
         ButtonModel button = difficultyGroup.getSelection();
         Difficulty difficulty = Difficulty.valueOf(button.getActionCommand());
@@ -109,10 +115,10 @@ public class ConfigScreen {
         return nameInput.getText();
     }
 
-    private void updatePlayer(String name, Difficulty difficulty, Skill skill) {
+    private void updatePlayer(String name, Difficulty difficulty, Skills skills) {
         Game.getPlayer().setName(name);
         Game.getPlayer().setDifficulty(difficulty);
-        Game.getPlayer().setSkill(skill);
+        Game.getPlayer().setSkills(skills);
         Game.getPlayer().setTokens(difficulty.getStartingTokens());
     }
 }
