@@ -113,5 +113,6 @@ public class ConfigScreen {
         Game.getPlayer().setName(name);
         Game.getPlayer().setDifficulty(difficulty);
         Game.getPlayer().setSkill(skill);
+        Game.getPlayer().setTokens(difficulty.getStartingTokens());
     }
 }
