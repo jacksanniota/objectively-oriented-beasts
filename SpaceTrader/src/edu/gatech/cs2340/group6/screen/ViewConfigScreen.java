@@ -5,6 +5,8 @@ import edu.gatech.cs2340.group6.object.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ViewConfigScreen {
 
@@ -19,6 +21,16 @@ public class ViewConfigScreen {
         JLabel pilot = new JLabel("Pilot Points: " + player.getSkills().getPilot().getPoints());
         JLabel merchant = new JLabel("Merchant Points: " + player.getSkills().getMerchant().getPoints());
         JLabel tokens = new JLabel("Tokens: " + player.getTokens());
+        JButton continueButton = new JButton("Continue");
+        continueButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Game.getInstance().getContentPane().removeAll();
+                Game.getInstance().getContentPane().add(new RegionScreen().getScreen());
+                Game.getInstance().getContentPane().validate();
+                Game.getInstance().getContentPane().repaint();
+            }
+        });
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         difficulty.setAlignmentX(Component.CENTER_ALIGNMENT);
         fighter.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -26,6 +38,7 @@ public class ViewConfigScreen {
         pilot.setAlignmentX(Component.CENTER_ALIGNMENT);
         merchant.setAlignmentX(Component.CENTER_ALIGNMENT);
         tokens.setAlignmentX(Component.CENTER_ALIGNMENT);
+        continueButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(name);
         panel.add(difficulty);
         panel.add(fighter);
@@ -33,6 +46,7 @@ public class ViewConfigScreen {
         panel.add(pilot);
         panel.add(engineer);
         panel.add(tokens);
+        panel.add(continueButton);
         return panel;
     }
 }
