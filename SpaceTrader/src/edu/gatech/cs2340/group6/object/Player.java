@@ -3,6 +3,7 @@ package edu.gatech.cs2340.group6.object;
 import edu.gatech.cs2340.group6.skills.Pilot;
 import edu.gatech.cs2340.group6.skills.Skill;
 import edu.gatech.cs2340.group6.skills.Skills;
+import edu.gatech.cs2340.group6.world.Region;
 
 public class Player {
 
@@ -10,6 +11,7 @@ public class Player {
     private Skills skills;
     private double tokens = 0;
     private Difficulty difficulty;
+    private Region currentRegion;
 
     public String getName() {
         return name;
@@ -45,5 +47,13 @@ public class Player {
 
     public void setSkills(Skills skills) {
         this.skills = skills;
+    }
+
+    public Region getCurrentRegion() {
+        return currentRegion;
+    }
+
+    public void setCurrentRegion(Region currentRegion) {
+        this.currentRegion = currentRegion;
     }
 }

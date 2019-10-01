@@ -1,0 +1,30 @@
+package edu.gatech.cs2340.group6.screen;
+
+import edu.gatech.cs2340.group6.Game;
+import edu.gatech.cs2340.group6.object.Player;
+import edu.gatech.cs2340.group6.world.Region;
+import edu.gatech.cs2340.group6.world.Universe;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class RegionScreen {
+
+    public JPanel getScreen() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        Player player = Game.getPlayer();
+        Region currentRegion = player.getCurrentRegion();
+        JLabel regionName = new JLabel("Region: " + currentRegion.getName());
+        JLabel regionCoords = new JLabel("Coordinates: (" + currentRegion.getCoords().getX()
+                                        + ", " + currentRegion.getCoords().getY() + ")");
+        JButton travelButton = new JButton("Travel");
+        regionName.setAlignmentX(Component.CENTER_ALIGNMENT);
+        regionCoords.setAlignmentX(Component.CENTER_ALIGNMENT);
+        travelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(regionName);
+        panel.add(regionCoords);
+        panel.add(travelButton);
+        return panel;
+    }
+}
