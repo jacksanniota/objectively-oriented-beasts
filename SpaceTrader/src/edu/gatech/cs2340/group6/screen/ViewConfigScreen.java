@@ -25,10 +25,7 @@ public class ViewConfigScreen {
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Game.getInstance().getContentPane().removeAll();
-                Game.getInstance().getContentPane().add(new RegionScreen().getScreen());
-                Game.getInstance().getContentPane().validate();
-                Game.getInstance().getContentPane().repaint();
+                ScreenUtils.changeScreen(new RegionScreen().getScreen());
             }
         });
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
