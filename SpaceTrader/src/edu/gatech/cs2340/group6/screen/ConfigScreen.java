@@ -84,10 +84,7 @@ public class ConfigScreen {
                 skills.setMerchant(new Merchant(merchantAmount));
 
                 updatePlayer(name, difficulty, skills);
-                Game.getInstance().getContentPane().removeAll();
-                Game.getInstance().getContentPane().add(new ViewConfigScreen().getScreen());
-                Game.getInstance().getContentPane().validate();
-                Game.getInstance().getContentPane().repaint();
+                ScreenUtils.changeScreen(new ViewConfigScreen().getScreen());
             }
         });
 
