@@ -20,7 +20,7 @@ public class Game extends JFrame {
     public Game(String title) {
         this.setTitle(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 500);
+        this.setSize(1000, 700);
         this.setResizable(false);
         JPanel contentPane = createStartPanel();
         this.setContentPane(contentPane);
