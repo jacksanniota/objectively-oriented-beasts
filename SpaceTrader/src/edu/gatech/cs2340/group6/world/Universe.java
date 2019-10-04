@@ -30,4 +30,13 @@ public class Universe {
             regions.add(region);
         }
     }
+
+    public static Region getRegionFromName(String name) {
+        for (Region region : regions) {
+            if (region.getName().equals(name)) {
+                return region;
+            }
+        }
+        return null;
+    }
 }
