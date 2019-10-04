@@ -22,4 +22,13 @@ public class WorldUtils {
         double totalDistance = Math.pow(xDistance + yDistance, .5);
         return Math.round(totalDistance);
     }
+
+    public static double getDistance(Region regionOne, Region regionTwo) {
+        Point playerCoords = regionOne.getCoords();
+        Point regionCoords = regionTwo.getCoords();
+        double xDistance = Math.pow((playerCoords.getX() - regionCoords.getX()), 2);
+        double yDistance = Math.pow((playerCoords.getY() - regionCoords.getY()), 2);
+        double totalDistance = Math.pow(xDistance + yDistance, .5);
+        return Math.round(totalDistance);
+    }
 }

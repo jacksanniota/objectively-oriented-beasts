@@ -18,6 +18,7 @@ public class RegionScreen {
         Player player = Game.getPlayer();
         Region currentRegion = player.getCurrentRegion();
         JLabel regionName = new JLabel("Region: " + currentRegion.getName());
+        JLabel techLevel = new JLabel("Tech Level: " + currentRegion.getTechLevel().toString());
         JLabel regionCoords = new JLabel("Coordinates: (" + currentRegion.getCoords().getX()
                                         + ", " + currentRegion.getCoords().getY() + ")");
         JButton travelButton = new JButton("Travel");
@@ -29,9 +30,11 @@ public class RegionScreen {
         });
         regionName.setAlignmentX(Component.CENTER_ALIGNMENT);
         regionCoords.setAlignmentX(Component.CENTER_ALIGNMENT);
+        techLevel.setAlignmentX(Component.CENTER_ALIGNMENT);
         travelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(regionName);
         panel.add(regionCoords);
+        panel.add(techLevel);
         panel.add(travelButton);
         return panel;
     }

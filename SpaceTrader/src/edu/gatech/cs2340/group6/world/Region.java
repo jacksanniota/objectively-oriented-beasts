@@ -35,7 +35,7 @@ public class Region {
         this.techLevel = techLevel;
     }
 
-    private Point generateRandomCoords() {
+    public Point generateRandomCoords() {
         Random r = new Random();
         Point point = new Point();
         int x = r.nextInt((200 - (-200)) + 1) + (-200);
