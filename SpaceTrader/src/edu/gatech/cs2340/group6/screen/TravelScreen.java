@@ -40,11 +40,14 @@ public class TravelScreen {
                 }
             });
             JLabel regionCoords = new JLabel("X: " + region.getCoords().getX() + " | Y: " + region.getCoords().getY());
+            JLabel techLevel = new JLabel("TechLevel: " + region.getTechLevel().toString());
             JLabel regionLabel = new JLabel("Region Distance : " + regionDistance);
             regionCoords.setAlignmentX(Component.CENTER_ALIGNMENT);
+            techLevel.setAlignmentX(Component.CENTER_ALIGNMENT);
             travelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             regionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             panel.add(travelButton);
+            panel.add(techLevel);
             panel.add(regionCoords);
             panel.add(regionLabel);
         }

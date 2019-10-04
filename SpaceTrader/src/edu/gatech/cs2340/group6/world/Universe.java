@@ -27,8 +27,20 @@ public class Universe {
     private void createRegions() {
         for (int i = 0; i < 10; i++) {
             Region region = new Region("region" + i);
+            if (!isFarEnough(region)) {
+                region = new Region("region" + i);
+            }
             regions.add(region);
         }
+    }
+
+    private boolean isFarEnough(Region newRegion) {
+        for (Region region : regions) {
+            if (WorldUtils.getDistance(newRegion, region) <= 5) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static Region getRegionFromName(String name) {
